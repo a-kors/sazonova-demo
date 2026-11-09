@@ -1,0 +1,34 @@
+---
+import { site } from '../data/master';
+---
+
+<div class="demo-banner">
+  <div class="wrap row">
+    <span class="dot" aria-hidden="true"></span>
+    <span>{site.demoBanner}</span>
+  </div>
+</div>
+
+<style>
+  .demo-banner {
+    background: #0f1419;
+    color: #d6dce2;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    padding: 10px 0;
+  }
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    text-align: center;
+  }
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ffb86b;
+    flex-shrink: 0;
+  }
+</style>

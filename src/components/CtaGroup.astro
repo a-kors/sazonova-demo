@@ -1,0 +1,92 @@
+---
+import { primaryCta, sideChannels } from '../data/master';
+
+interface Props {
+  label?: string;
+  variant?: 'primary' | 'secondary';
+  tone?: 'default' | 'dark';
+  size?: 'md' | 'sm';
+}
+
+const {
+  label = primaryCta.label,
+  variant = 'primary',
+  tone = 'default',
+  size = 'md',
+} = Astro.props;
+
+const icons: Record<string, string> = {
+  tg: 'm22 2-7 20-4-9-9-4 20-7Z M22 2 11 13',
+  vk: 'M3.5 7h3c0.5 3 1.7 5.7 3.5 7v-7h3v3c0 0.9 0.5 1.3 1 1.3 0.5 0 1-0.4 1.3-1C15.7 9 16.5 7.6 17 7h3c-0.6 2-2.2 4.4-3.3 5.5-0.3 0.3-0.3 0.5 0 0.9 0.5 0.5 2.5 2.9 3 4.1 0.2 0.5-0.1 0.8-0.6 0.8H16c-0.5 0-0.9-0.2-1.3-0.6-0.9-0.9-1.7-2.2-2.5-2.2-0.3 0-0.5 0.2-0.5 0.8V17c0 0.6-0.3 1-1.5 1-3 0-6-2-8.1-6.3C1 10 1 7.5 3.5 7Z',
+  wa: 'M3 21l1.65-4.5A8.5 8.5 0 1 1 7.5 19.4L3 21Z M9 9.5c0 3 2.5 5.5 5.5 5.5l1.2-1.3-1.9-1-1 .8a4 4 0 0 1-2.3-2.3l.8-1-1-1.9L9 9.5Z',
+  max: 'M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z',
+};
+---
+
+<div class={`cta-group cta-group--${tone} cta-group--${size}`}>
+  <a class={`btn btn-${variant} cta-group__main`} href={primaryCta.href}>
+    <span>{label}</span>
+    <span class="arrow" aria-hidden="true">→</span>
+  </a>
+
+  {sideChannels.map((c) => (
+    <a class="cta-group__social" href={c.href} aria-label={`Написать в ${c.name}`} title={c.name}>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d={icons[c.icon]} stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </a>
+  ))}
+</div>
+
+<style>
+  .cta-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .cta-group__social {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--line-strong);
+    color: var(--ink);
+    background: #ffffff;
+    transition: color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .cta-group__social:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .cta-group--sm .cta-group__social {
+    width: 36px;
+    height: 36px;
+  }
+  .cta-group--sm .cta-group__social svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .cta-group--dark .cta-group__main {
+    background: var(--accent);
+    color: #ffffff;
+  }
+  .cta-group--dark .cta-group__main:hover {
+    background: var(--accent-strong);
+  }
+  .cta-group--dark .cta-group__social {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .cta-group--dark .cta-group__social:hover {
+    color: #ffffff;
+    border-color: #ffffff;
+  }
+</style>
