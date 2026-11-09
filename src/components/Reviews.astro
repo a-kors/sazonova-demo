@@ -63,9 +63,17 @@ import { master, reviews } from '../data/master';
     };
     check();
     if (cols) new ResizeObserver(check).observe(cols);
+    const fits = () => {
+      if (!wall.classList.contains('is-open') && wall.scrollHeight <= wall.clientHeight + 40) {
+        wall.classList.add('is-open');
+        if (btn) btn.style.display = 'none';
+      }
+    };
+    fits();
+    window.addEventListener('load', () => setTimeout(fits, 1200));
     btn?.addEventListener('click', () => {
       wall.classList.add('is-open');
-      btn.hidden = true;
+      btn.style.display = 'none';
     });
   });
 </script>

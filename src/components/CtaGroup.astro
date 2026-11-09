@@ -43,6 +43,7 @@ const icons: Record<string, string> = {
     display: inline-flex;
     align-items: center;
     gap: 10px;
+    flex-wrap: wrap;
   }
   .cta-group__social {
     width: 42px;
@@ -88,5 +89,14 @@ const icons: Record<string, string> = {
   .cta-group--dark .cta-group__social:hover {
     color: #ffffff;
     border-color: #ffffff;
+  }
+  @media (max-width: 480px) {
+    .cta-group {
+      width: 100%;
+    }
+    .cta-group__main {
+      flex-basis: 100%;
+      justify-content: center;
+    }
   }
 </style>

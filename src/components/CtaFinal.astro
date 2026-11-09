@@ -4,7 +4,8 @@ import CtaGroup from './CtaGroup.astro';
 ---
 
 <section class="compact cta">
-  <div class="wrap panel" data-reveal>
+  <div class="wrap">
+  <div class="panel" data-reveal>
     <div class="text">
       <span class="section-eyebrow">Скоро старт?</span>
       <h2>
@@ -18,6 +19,7 @@ import CtaGroup from './CtaGroup.astro';
         <span>Позвонить · {master.phone}</span>
       </a>
     </div>
+  </div>
   </div>
 </section>
 
@@ -55,11 +57,11 @@ import CtaGroup from './CtaGroup.astro';
     align-items: flex-start;
     gap: 14px;
   }
-  .actions .btn-primary {
+  .actions :global(.btn-primary) {
     background: var(--accent);
     color: #ffffff;
   }
-  .actions .btn-primary:hover {
+  .actions :global(.btn-primary):hover {
     background: var(--accent-strong);
   }
   .actions .btn-ghost {
